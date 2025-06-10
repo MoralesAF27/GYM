@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro GYM</title>
+    <link rel="stylesheet" href="formulario.css">
+    <script src="validaciones.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/gimnasio.jpg" alt="Gimnasio" class="banner">
+            <h1>Registro al Gimnasio</h1>
+        </header>
+
+        <form action="RegistroServlet" method="post" onsubmit="return validarFormulario()">
+            <fieldset>
+                <legend>Datos Personales</legend>
+
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre">
+
+                <label for="edad">Edad:</label>
+                <input type="text" id="edad" name="edad">
+
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="">Seleccione...</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label for="altura">Altura (cm):</label>
+                <input type="text" id="altura" name="altura">
+
+                <label for="peso">Peso (kg):</label>
+                <input type="text" id="peso" name="peso">
+            </fieldset>
+
+            <fieldset>
+                <legend>Objetivo</legend>
+                <div class="objetivo-btns">
+                    <input type="radio" id="bajar" name="objetivo" value="Bajar de peso">
+                    <label for="bajar">Bajar de peso</label>
+
+                    <input type="radio" id="definir" name="objetivo" value="Definir">
+                    <label for="definir">Definir</label>
+
+                    <input type="radio" id="ganar" name="objetivo" value="Ganar masa muscular">
+                    <label for="ganar">Ganar masa muscular</label>
+
+                    <input type="radio" id="resistencia" name="objetivo" value="Mejorar resistencia">
+                    <label for="resistencia">Mejorar resistencia</label>
+
+                    <input type="radio" id="rehabilitacion" name="objetivo" value="Rehabilitación o movilidad">
+                    <label for="rehabilitacion">Rehabilitación o movilidad</label>
+
+                    <input type="radio" id="estres" name="objetivo" value="Reducción de estrés">
+                    <label for="estres">Reducción de estrés</label>
+
+                    <input type="radio" id="condicion" name="objetivo" value="Condición general">
+                    <label for="condicion">Condición general</label>
+                </div>
+            </fieldset>
+
+            <div class="boton-enviar">
+                <button type="submit">Registrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

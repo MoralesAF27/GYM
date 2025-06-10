@@ -1,0 +1,152 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 10/05/2025, 12:01:19 p. m.
+    Author     : andre
+*/
+/* rutina.css */
+
+/* Fuentes y reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Header */
+.header {
+    background: #003b5c;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffb703;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.header .subtitle {
+    margin-top: 8px;
+    font-size: 1.2rem;
+    color: #ffd966;
+}
+
+/* Secciones */
+section {
+    margin-bottom: 35px;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #ffb703;
+    border-bottom: 3px solid #ffb703;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Listas */
+ul {
+    list-style: none;
+}
+
+.usuario-info ul li,
+.rutina-ejercicios ul li,
+.plan-semanal ul li {
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 12px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.usuario-info ul li:hover,
+.rutina-ejercicios ul li:hover,
+.plan-semanal ul li:hover {
+    background: rgba(255, 183, 3, 0.8);
+    color: #000;
+    cursor: default;
+}
+
+.ejercicio-nombre {
+    font-weight: 700;
+}
+
+.ejercicio-peso {
+    font-style: italic;
+    color: #ffd966;
+    margin-left: 8px;
+}
+
+/* Alimentación */
+.alimentacion p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(255, 183, 3, 0.7);
+}
+
+/* Footer */
+.footer {
+    background-color: #003b5c;
+    color: #ffd966;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 20px 15px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.4rem;
+    }
+
+    ul li {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+}
+
