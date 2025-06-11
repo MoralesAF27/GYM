@@ -83,7 +83,8 @@ label {
     color: #ffd966;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
     width: 100%;
     padding: 10px 14px;
     border: 2px solid #ffb703;
@@ -92,15 +93,49 @@ input[type="text"] {
     color: #fff;
     font-size: 1rem;
     transition: border-color 0.3s ease, background-color 0.3s ease;
+    letter-spacing: 1px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
     outline: none;
     border-color: #ffd966;
     background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
 }
 
-/* Select corregido para texto visible y fondo oscuro */
+/* Placeholder */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    letter-spacing: normal;
+}
+
+/* Contenedor de contraseña */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #ffd966;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.password-toggle:hover {
+    color: #ffb703;
+}
+
+/* Select */
 select {
     width: 100%;
     padding: 10px 14px;
@@ -125,8 +160,6 @@ select:focus {
     border-color: #ffd966;
     background-color: #222c3a;
 }
-
-/* No se estilizan las opciones para evitar problemas de compatibilidad */
 
 /* Objetivos (botones radio estilo cards) */
 .objetivo-btns {
@@ -197,7 +230,7 @@ button[type="submit"]:hover {
     color: #003b5c;
 }
 
-/* Mensajes de error (si usas alertas o mensajes inline) */
+/* Mensajes de error */
 .error-message {
     background-color: #d9534f;
     color: #fff;
@@ -234,4 +267,26 @@ button[type="submit"]:hover {
         padding: 14px 0;
         font-size: 1.1rem;
     }
+}
+
+.registro-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #ffd966;
+}
+
+.registro-link button {
+    background-color: transparent;
+    border: 2px solid #ffb703;
+    color: #ffb703;
+    padding: 10px 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.registro-link button:hover {
+    background-color: #ffb703;
+    color: #1e3c72;
 }

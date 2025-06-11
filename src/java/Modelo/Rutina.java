@@ -1,12 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author andre
- */
 package Modelo;
 
 import java.util.List;
@@ -36,5 +27,14 @@ public class Rutina implements IRutina {
     @Override
     public List<String> getPlanSemanal() {
         return planSemanal;
+    }
+
+    // Método para actualizar pesos basados en el peso del usuario
+    public void calcularPesosParaUsuario(double pesoUsuario) {
+        for (Map.Entry<IMaquina, Double> entry : ejerciciosConPeso.entrySet()) {
+            IMaquina maquina = entry.getKey();
+            double pesoCalculado = maquina.calcularPesoUsuario(pesoUsuario);
+            ejerciciosConPeso.put(maquina, pesoCalculado);
+        }
     }
 }

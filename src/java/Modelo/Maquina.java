@@ -1,11 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author andre
- */
 package Modelo;
 
 public class Maquina implements IMaquina {
@@ -26,21 +18,22 @@ public class Maquina implements IMaquina {
         return nombre;
     }
 
-    @Override
-    public Double calcularPesoUsuario(double pesoUsuario) {
-        if (pesoBase == 0) {
-            return null; // No aplica peso
-        }
-        double pesoCalculado;
-        if (pesoUsuario < pesoMinimo) {
-            pesoCalculado = pesoBase * 0.8;
-        } else if (pesoUsuario > pesoMaximo) {
-            pesoCalculado = pesoBase * 1.2;
-        } else {
-            double factor = (pesoUsuario - pesoMinimo) / (pesoMaximo - pesoMinimo);
-            pesoCalculado = pesoBase * (0.8 + 0.4 * factor);
-        }
-        // Redondear al múltiplo de 5 más cercano
-        return (double) (Math.round(pesoCalculado / 5.0) * 5);
+    public double calcularPesoUsuario(double pesoUsuario) {
+        // Lógica para calcular el peso basado en el peso del usuario
+        double pesoCalculado = pesoBase * (pesoUsuario / 70.0); // 70kg como referencia
+        return Math.max(pesoMinimo, Math.min(pesoCalculado, pesoMaximo));
+    }
+
+    // Getters adicionales
+    public double getPesoMinimo() {
+        return pesoMinimo;
+    }
+
+    public double getPesoMaximo() {
+        return pesoMaximo;
+    }
+
+    public double getPesoBase() {
+        return pesoBase;
     }
 }

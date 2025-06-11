@@ -1,93 +1,58 @@
-<%@ page import="Modelo.Usuario" %>
-<%@ page import="Modelo.IRutina" %>
-<%@ page import="Modelo.IMaquina" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-
+<%@page import="Modelo.Usuario, Modelo.IRutina, Modelo.IMaquina, java.util.Map, java.util.List" %>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     IRutina rutina = (IRutina) session.getAttribute("rutina");
-
+    
     if (usuario == null || rutina == null) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect(request.getContextPath() + "/registro.jsp");
         return;
     }
 %>
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Rutina Personalizada - Gimnasio</title>
-    <link rel="stylesheet" href="rutina.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Tu Rutina Personalizada</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; }
+        .section { margin-bottom: 30px; }
+        .ejercicio { margin: 10px 0; padding: 10px; background: #f5f5f5; }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1>Tu Rutina Personalizada</h1>
-            <p class="subtitle">¡Vamos a ponernos en forma, <%= usuario.getNombre() %>!</p>
+    <div class="container">
+        <h1>¡Bienvenido <%= usuario.getNombre() %>!</h1>
+        
+        <div class="section">
+            <h2>Tu Información</h2>
+            <p><strong>Objetivo:</strong> <%= usuario.getObjetivo() %></p>
+            <p><strong>Peso:</strong> <%= usuario.getPeso() %> kg</p>
+            <p><strong>Altura:</strong> <%= usuario.getAltura() %> cm</p>
         </div>
-    </header>
-
-    <main class="container">
-        <section class="usuario-info">
-            <h2>Datos del Usuario</h2>
-            <ul>
-                <li><strong>Edad:</strong> <%= usuario.getEdad() %> años</li>
-                <li><strong>Sexo:</strong> <%= usuario.getSexo() %></li>
-                <li><strong>Peso:</strong> <%= Math.round(usuario.getPeso()) %> kg</li>
-                <li><strong>Altura:</strong> <%= Math.round(usuario.getAltura()) %> cm</li>
-                <li><strong>Objetivo:</strong> <%= usuario.getObjetivo() %></li>
-            </ul>
-        </section>
-
-        <section class="rutina-ejercicios">
-            <h2>Rutina con Pesos Personalizados</h2>
-            <ul>
-                <%
-                    Map<IMaquina, Double> ejercicios = rutina.getEjerciciosConPeso();
-                    for (Map.Entry<IMaquina, Double> entry : ejercicios.entrySet()) {
-                        IMaquina maquina = entry.getKey();
-                        Double peso = entry.getValue();
-                %>
-                    <li>
-                        <span class="ejercicio-nombre"><%= maquina.getNombre() %></span>
-                        <%
-                            if (peso != null && peso > 0) {
-                                out.print(": " + String.format("%.0fkg", peso));
-                            }
-                        %>
-                    </li>
-                <%
-                    }
-                %>
-            </ul>
-        </section>
-
-        <section class="plan-semanal">
-            <h2>Planificación Semanal</h2>
-            <ul>
-                <%
-                    List<String> planSemanal = rutina.getPlanSemanal();
-                    for (int i = 0; i < planSemanal.size(); i++) {
-                        String dia = planSemanal.get(i);
-                %>
-                    <li><%= dia %></li>
-                <%
-                    }
-                %>
-            </ul>
-        </section>
-
-        <section class="alimentacion">
-            <h2>Recomendación de Alimentación</h2>
+        
+        <div class="section">
+            <h2>Plan de Alimentación</h2>
             <p><%= rutina.getAlimentacion() %></p>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>© 2025 Gimnasio SmartFit - Todos los derechos reservados</p>
-    </footer>
+        </div>
+        
+        <div class="section">
+            <h2>Plan Semanal</h2>
+            <ul>
+                <% for (String dia : rutina.getPlanSemanal()) { %>
+                    <li><%= dia %></li>
+                <% } %>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Ejercicios Recomendados</h2>
+            <% for (Map.Entry<IMaquina, Double> ejercicio : rutina.getEjerciciosConPeso().entrySet()) { %>
+                <div class="ejercicio">
+                    <h3><%= ejercicio.getKey().getNombre() %></h3>
+                    <p>Peso recomendado: <%= String.format("%.1f kg", ejercicio.getValue()) %></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
 </body>
 </html>
